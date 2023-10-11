@@ -26,11 +26,12 @@ function onChangeCat(e) {
         const { url, breeds } = r[0];
         catInfo.innerHTML = `<img src="${url}" alt="${breeds[0].name}" width="450"/>
         <div class="box"><h1>${breeds[0].name}</h1><p>${breeds[0].description}</p>
-        <p><strong>Temperament:</strong> ${breeds[0].temperament}</p></div>`;
+        <p><h2>Temperament:</h2>${breeds[0].temperament}</p></div>`;
     }).catch(() => {
         loaderText.classList.add('is-hidden');
         errorText.classList.remove('is-hidden');
     }).finally(setTimeout(() => {
+        errorText.classList.add('is-hidden');
         loaderText.classList.add('is-hidden');
         catInfo.classList.remove('is-hidden');
         breedSelect.removeAttribute('disabled');
