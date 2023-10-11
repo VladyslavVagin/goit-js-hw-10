@@ -1,6 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
 import SlimSelect from "slim-select";
 import 'slim-select/dist/slimselect.css';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import './style.css';
 const selectItem = document.querySelector('.breed-select');
 const catInfo = document.querySelector('.cat-info');
@@ -34,10 +35,12 @@ function onChangeCat(e) {
         catInfo.innerHTML = `<img src="${url}" alt="${breeds[0].name}" width="450"/>
         <div class="box"><h1>${breeds[0].name}</h1><p>${breeds[0].description}</p>
         <p><h2>Temperament:</h2>${breeds[0].temperament}</p></div>`;
+        Notify.success('REQUEST ACCEPTED');
     }).catch(onError).finally(setTimeout((onFinally), 3000));
 };
 
 function onError() {
+    Notify.failure('SORRY!!! SOMETHING WENT WRONG !!! SERVER NOT ANSWER');
     loaderText.classList.add('is-hidden');
     errorText.classList.remove('is-hidden');
 };
