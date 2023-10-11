@@ -19,6 +19,12 @@ fetchBreeds().then(cats => {
     });
     new SlimSelect({
         select: selectItem,
+        settings: {
+            searchPlaceholder: 'Select cat, please...',
+        },
+        events: {
+            afterChange: (() => selectItem.setAttribute('disabled', '')),
+        }
     });
 });
 
@@ -28,7 +34,6 @@ function onChangeCat(e) {
     const beerId = e.currentTarget.value;
     loaderText.classList.remove('is-hidden');
     catInfo.classList.add('is-hidden');
-    selectItem.setAttribute('disabled', '');
     fetchCatByBreed(beerId).then(r => {
         console.log(r);
         const { url, breeds } = r[0];
