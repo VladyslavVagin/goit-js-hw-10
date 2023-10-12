@@ -26,7 +26,7 @@ fetchBreeds().then(cats => {
             afterChange: (() => selectItem.setAttribute('disabled', '')),
         }
     });
-});
+}).catch(onError);
 
 selectItem.addEventListener('change', onChangeCat);
 
